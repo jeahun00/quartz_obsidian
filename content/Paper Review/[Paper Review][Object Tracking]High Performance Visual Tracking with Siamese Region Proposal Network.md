@@ -55,8 +55,14 @@ dg-publish: "true"
 * 이러한 원리를 이용하여 object tracking task 에서 **"$T-1$ 시간에서 감지된 객체를 T 시간에서 찾을 수 있을 것이다"** 라는 아이디어를 적용한다.
 * 이러한 아이디어를 적용한 논문이 SiamsesMask 이다.
 ![[Pasted image 20240418105446.png]]
-### Fully convolutional 
-### [Fully-convolutional siamese networks for object tracking](https://link.springer.com/chapter/10.1007/978-3-319-48881-3_56)
+### Fully-convolutional siamese networks for object tracking
+
+* [이 논문](https://arxiv.org/pdf/1606.09549)은 object tracking 에 siamese network 를 적용한 대표적인 논문이다.
+	* $x$: 비디오의 현재 프레임
+	* $z$: 우리가 video 안에서 찾고자 하는 객체의 patch
+	* $\varphi(x)$: $x$ 에 conv 연산후 나온 featuremap 
+	* $\varphi(z)$: $z$ 에 conv 연산후 나온 featuremap 
+* 이 논문에서는 결국 $\varphi(x),\varphi(z)$ 간의 correlation 을 구하여 $x$ 와 비슷한 feature 가 $z$ 에 어디에 존재하는지를 추정하는 것이 목적이다.
 
 
 * Reference
@@ -95,3 +101,67 @@ $$
 		* 추출된 feature : $\varphi(x)$
 * 위의 2개의 CNN network 는 parameter 를 공유함
 ![[Pasted image 20240417213258.png|400]]
+
+## 3.2. Region proposal subnetwork
+![[Pasted image 20240418213407.png]]
+$$
+\begin{align*}\\
+A^{cls}_{w\times h\times 2k}=[\varphi(x)]_{cls} \star [\varphi(z)]_{cls}\\
+A^{reg}_{w\times h\times 4k}=[\varphi(x)]_{reg} \star [\varphi(z)]_{reg}\\
+\end{align*}
+$$
+* Region proposal subnetwork 의 전반적인 구조와 수식 자체가 **Faster-RCNN 과 매우 유사**하다.
+* $A^{cls}_{w\times h\times 2k}$: classification branch 의 output feature
+	* $w\times h$ : output feature map 의 크기
+	* $k$ : anchor 의 갯수
+	* $2$ : target 이 detection Frame 에 존재하는지 안하는지를 2channel 로 판단
+	* $[\varphi(x)]_{cls} \star [\varphi(z)]_{cls}$
+		* $[\varphi(x)]_{cls}$을 input 으로 보고 $[\varphi(z)]_{cls}$를 kernel 로 취급하여 convolution 연산
+* $A^{reg}_{w\times h\times 4k}$: classification branch 의 output feature
+	* $w\times h$ : output feature map 의 크기
+	* $k$ : anchor 의 갯수
+	* $4$ : target 의 위치를 $x,y$(target 의 중심좌표), $w,h$(bbox의 가로세로 크기)
+	* $[\varphi(x)]_{reg} \star [\varphi(z)]_{reg}$
+		* $[\varphi(x)]_{reg}$을 input 으로 보고 $[\varphi(z)]_{reg}$를 kernel 로 취급하여 convolution 연산
+
+* loss function 역시 faster r-cnn 의 것을 그대로 가져다 쓴다.
+
+* **Normalize distance term**
+$$
+\begin{align*}
+ \delta[0] = \frac{T_x - A_x}{A_w}, \quad \delta[1] = \frac{T_y - A_y}{A_h}, \\
+ \delta[2] = \ln\left(\frac{T_w}{A_w}\right), \quad \delta[3] = \ln\left(\frac{T_h}{A_h}\right)
+\end{align*}
+$$
+* $T_x,T_y$ : Ground-Truth 의 center 좌표
+* $T_w,T_h$ : Ground-Truth 의 anchor box 의 shape
+* $A_x,A_y$ : 예측된 center 좌표
+* $A_w,A_h$ : 예측된 anchor box 의 shape
+
+* **smooth-L1 loss**
+$$
+\text{smooth}_{L_1}(x, \sigma) = \left\{ \begin{array}{lr} 0.5\sigma^2x^2, & |x| < \frac{1}{\sigma^2} \\ |x| - \frac{1}{2\sigma^2}, & |x| \geq \frac{1}{\sigma^2} \end{array} \right.
+
+$$
+* **multi-task loss**
+$$
+\text{loss} = L_{cls} + \lambda L_{reg}
+$$
+* $L_{cls}$ : cross-entropy loss
+* $L_{reg}=\sum_{i=0}^{3} \text{smooth}_{L_1}(\delta[i], \sigma)$: 
+
+# 4. Tracking as one-shot detection
+## 4.1. Formulation
+
+$\min_W \frac{1}{n} \sum_{i=1}^{n} L(\psi(x_i; W), \ell_i)$
+
+
+
+
+$REG^* = \{ (x^{reg}_i, y^{reg}_j, d^{reg}_{xl}, d^{reg}_{yl}, d^{reg}_{wl}, d^{reg}_{hl}) | i \in I, j \in J, l \in L \}$
+
+find the activation of $ANC^*$ on $A^{cls}_{w\times h\times 4k}$ to get the 
+corresponding refinement coordinates as $REG^*$
+
+
+The final set of $K$ proposals refined through $REG^*$ is called $PRO^*$
