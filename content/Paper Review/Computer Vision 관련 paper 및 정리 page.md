@@ -3,8 +3,8 @@ dg-publish: "true"
 ---
 #Deep_Learning 
 
-[[[test]test]]
-* [[[test]test]]
+[[test]]
+* [[test]]
 ## Object Detection
 * [[[Object Detection] YOLO9000]]
 	* REF : 

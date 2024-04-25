@@ -6,8 +6,8 @@ title: Slow & Steady AI researcher
 * [[Computer Vision 관련 paper 및 정리 page]]
 * [[Deep Learning]]
 
-[[[test]test]]
-* [[[test]test]]
+[[test]]
+* [[test]]
 
 
 # About Me ...
