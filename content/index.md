@@ -3,11 +3,8 @@ title: Slow & Steady AI researcher
 ---
 # Blog main topic
 
-* [[Computer Vision 관련 paper 및 정리 page]]
+* [[Computer Vision paper list page]]
 * [[Deep Learning]]
-
-[[test]]
-* [[test]]
 
 
 # About Me ...
