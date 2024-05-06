@@ -1,3 +1,11 @@
+---
+tags:
+  - 3D_Object_Detection
+  - Point_Cloud
+  - Deep_Learning
+  - "#Computer_Vision"
+---
+
 # Abstract
 
 * 최근 point cloud 를 이용한 3d object detection 에서는 아래 2가지 방법이 주로 쓰인다.

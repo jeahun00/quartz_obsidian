@@ -1,5 +1,10 @@
 ---
 dg-publish: "true"
+tags:
+  - Object_Tracking
+  - One_Shot_Learning
+  - Computer_Vision
+  - Deep_Learning
 ---
 
 * [correlation filter vs. convolution filter](https://velog.io/@syiee/Computer-vision-Linear-Filters)

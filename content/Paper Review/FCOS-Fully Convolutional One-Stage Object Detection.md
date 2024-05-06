@@ -1,7 +1,11 @@
 ---
 dg-publish: "true"
+tags:
+  - Deep_Learning
+  - Computer_Vision
+  - Object_Detection
 ---
-#Deep_Learning #Computer_Vision #Object_Detection
+
 
 <mark style='background:#eb3b5a'>빨간 형광펜은 이전의 방법론(단점을 가지는) 혹은 여러 단점들이나 극복해야 할 점들.</mark>
 <mark style='background:#3867d6'>파란 형광펜은 빨간 형광펜을 극복했거나 이 논문에서 제시하는 장점들.</mark>

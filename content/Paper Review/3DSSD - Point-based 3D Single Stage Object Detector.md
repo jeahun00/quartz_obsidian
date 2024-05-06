@@ -1,5 +1,9 @@
 ---
 dg-publish: "true"
+tags:
+  - 3D_Object_Detection
+  - Object_Detection
+  - Computer_Vision
 ---
 # Abstract
 

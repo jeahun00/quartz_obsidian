@@ -1,3 +1,9 @@
+---
+tags:
+  - Computer_Vision
+  - Object_Detection
+  - Sample_Selection
+---
 # Abstract
 
 지금까지 anchor-based detector가 지배적이었지만 최근 anchor-free detection 방법이 FPN과 Focal Loss 덕분에 많아지고 있다

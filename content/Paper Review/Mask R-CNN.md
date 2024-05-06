@@ -1,5 +1,9 @@
 ---
 dg-publish: "true"
+tags:
+  - Computer_Vision
+  - Deep_Learning
+  - Instance_Segmentation
 ---
 >Highlight, 혹은 글자색이 파란 것은 장점 혹은 단점을 극복한 방법, 빨간색은 제시한 방법론의 단점을 의미한다.
 

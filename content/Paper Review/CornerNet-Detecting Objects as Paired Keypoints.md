@@ -1,5 +1,9 @@
 ---
 dg-publish: "true"
+tags:
+  - Computer_Vision
+  - Deep_Learning
+  - Object_Detection
 ---
 
 

@@ -1,3 +1,10 @@
+---
+tags:
+  - Computer_Vision
+  - Deep_Learning
+  - Retrieval
+  - Contrastive_Learning
+---
 <mark style='background:var(--mk-color-orange)'>기존 방법론</mark>
 <mark style='background:var(--mk-color-green)'>이 논문에서 제시한 방법</mark>
 <span style='color:var(--mk-color-teal)'>제시한 방법의 장점</span>

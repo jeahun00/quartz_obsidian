@@ -1,7 +1,11 @@
 ---
 dg-publish: true
+tags:
+  - Computer_Vision
+  - Deep_Learning
+  - Semantic_segmentation
 ---
-#Computer_Vision #Deep_Learning #Semantic_segmentation
+
 
 REF : 
 * [DenseCRF(Fully connected CRF) 관련 글](https://pseudo-lab.github.io/SegCrew-Book/docs/Appendix/DenseCRF.html)

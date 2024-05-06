@@ -1,5 +1,10 @@
 ---
 dg-publish: "true"
+tags:
+  - backbone
+  - Computer_Vision
+  - Semantic_segmentation
+  - Keypoint__Detection
 ---
 
 
