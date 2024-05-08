@@ -38,7 +38,7 @@ dg-publish: "true"
 * [[High Performance Visual Tracking with Siamese Region Proposal Network]]
 
 ## Face Identification
-* 
+* [[ArcFace- Additive Angular Margin Loss for Deep Face Recognition]]
 
 ## Semantic/Instance Segmentation/panoptic segmentation
 * [[Mask R-CNN]]/[[Mask R-CNN]]
